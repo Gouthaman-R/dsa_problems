@@ -2621,7 +2621,9 @@ Explanation: No occurrence of 4 in the array, so, output is [-1, -1]"""
 "[2, 5]"
         
 # =============================================================================================================
-"""You are given an array arr[] of size n - 1 that contains distinct integers in the range from 1 to n (inclusive). This array represents a permutation of the integers from 1 to n with one element missing. Your task is to identify and return the missing element.
+"""You are given an array arr[] of size n - 1 that contains distinct integers in the range from 1 to n (inclusive).
+ This array represents a permutation of the integers from 1 to n with one element missing.
+   Your task is to identify and return the missing element.
 
 Examples:
 
@@ -3399,3 +3401,654 @@ Explanation: The given linked list is 10->5->100->5. Since 'k' is more than the 
 
 # =============================================================================================================
 
+"""Rotate a Linked List
+
+You are given the head of a singly linked list, you have to left rotate the linked list k times. 
+Return the head of the modified linked list.
+
+Examples:
+
+Input: k = 4,
+   
+Output: 50 -> 10 -> 20 -> 30 -> 40
+Explanation:
+Rotate 1: 20 -> 30 -> 40 -> 50 -> 10
+Rotate 2: 30 -> 40 -> 50 -> 10 -> 20
+Rotate 3: 40 -> 50 -> 10 -> 20 -> 30
+Rotate 4: 50 -> 10 -> 20 -> 30 -> 40"""
+
+
+# class Solution:
+#     def check(self,head):
+#         cur =head
+#         count=0
+#         while(cur is not None):
+#             cur=cur.next
+#             count+=1
+#         return count
+#     def rotate(self, head, k):
+#         n=self.check(head)                       # calls the check func to return counts of nodes
+#         k=k%n
+#         if k == 0:
+#             return head
+        
+#         cur=head
+#         while cur.next is not None:
+#             cur=cur.next
+#         cur.next=head
+        
+#         i=k                                 # to rotate the node from last to first ,that is from right to left use i=k
+#         cur=head                               # to rotate from left to right, use i=n-k
+#         while(i>1):
+#             cur=cur.next
+#             i-=1
+#         head=cur.next
+#         cur.next=None
+            
+#         return head
+
+
+
+# =============================================================================================================
+"""Remove every k'th node
+
+Given a singly linked list, your task is to remove every kth node from the linked list. 
+
+Examples:
+
+Input: Linked list: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8, k = 2
+Output: 1 -> 3 -> 5 -> 7
+
+Explanation: After removing every 2nd node of the linked list, the resultant linked list will be: 1 -> 3 -> 5 -> 7."""
+
+# class Solution:
+#     def deleteK(self, head, k):
+#         pre=None
+#         cur=head
+#         count=0
+#         while(cur is not None):
+#             count+=1
+#             if count%k==0:
+#                 pre.next=cur.next
+#                 cur=cur.next
+#             else:
+#                 pre=cur
+#                 cur=cur.next
+#         return head
+
+# =============================================================================================================
+
+"""Insert in a Sorted List
+
+Given a linked list sorted in ascending order and an integer called key, insert data in the linked list such that the list remains sorted.
+
+Examples:
+
+Input: LinkedList: 25->36->47->58->69->80, key: 19
+Output: 19->25->36->47->58->69->80
+
+Explanation: After inserting 19 the sorted linked list will look like the one in the output.
+Input: LinkedList: 50->100, key: 75
+Output: 50->75->100
+
+Explanation: After inserting 75 the sorted linked list will look like the one in the output."""
+
+# class Solution:
+#     def sortedInsert(self, head, key):
+#         # create a new node
+#         new_node = Node(key)
+
+#         #  Insert before head
+#         if head is None or key < head.data:
+#             new_node.next = head
+#             return new_node
+
+#         # Traverse and insert in correct position
+#         cur = head
+#         while cur.next is not None and cur.next.data < key:
+#             cur = cur.next
+
+#         # Insert new_node after cur
+#         new_node.next = cur.next
+#         cur.next = new_node
+
+#         return head
+
+# =============================================================================================================
+
+"""Reverse a linked list
+
+You are given the head of a singly linked list.
+ You have to reverse the linked list and return the head of the reversed list.
+"""
+
+# BRUTE FORCE METHOD STORING IN STACK AND RETRIEVING IT
+# class Solution:
+#     def reverseList(self, head):
+        # Code here
+        # cur=head
+        # stack=[]
+        # while cur is not None:
+        #     stack.append(cur)
+        #     cur=cur.next
+        # new_head=stack.pop()
+        # cur=new_head
+        # while stack:
+        #     cur.next=stack.pop()
+        #     cur=cur.next
+        # cur.next=None
+        # return new_head
+        
+
+# OPTIMIZED PROGRAM:  USING TWO POINTER.
+
+# pre=None
+# cur=head
+# while cur is not None:
+#     new=cur.next
+#     cur.next=pre
+#     pre=cur
+#     cur=new
+# return pre
+
+
+# =============================================================================================================
+
+"""Palindrome Linked List
+
+You are given the head of a singly linked list of positive integers. 
+You have to check if the given linked list is palindrome or not."""
+
+# class Solution:
+#     def isPalindrome(self, head):
+
+#         cur=head
+#         stack=[]
+#         while cur is not None:
+#             stack.append(cur.data)
+#             cur=cur.next
+        
+#         cur=head
+        
+#         while(cur is not None ):
+#             if cur.data!=stack.pop():
+#                 return False
+#             cur=cur.next
+                
+#         return True
+
+
+# =============================================================================================================
+
+
+"""Intersection in Y Shaped Lists
+
+
+You are given the heads of two non-empty singly linked lists, head1 and head2, 
+that intersect at a certain point. Return that Node where these two linked lists intersect.
+
+Note: It is guaranteed that the intersected node always exists.
+
+In the custom input you have to give input for CommonList 
+which pointed at the end of both head1 and head2 to form a Y-shaped linked list.
+Examples:
+
+Input: head1: 10 -> 15 -> 30, head2: 3 -> 6 -> 9 -> 15 -> 30
+Output: 15
+Explanation: From the above image, it is clearly seen that the common part is 15 -> 30, 
+whose starting point is 15.
+    
+Input: head1: 4 -> 1 -> 8 -> 5, head2: 5 -> 6 -> 1 -> 8 -> 5
+Output: 1
+Explanation: From the above image, it is clearly seen that the common part is 1 -> 8 -> 5,
+ whose starting point is 1."""
+
+
+# class Solution:
+#     def getlenght(self,head):
+#         cur=head
+#         length=0
+#         while cur is not None:
+#             length+=1
+#             cur=cur.next
+#         return length
+#     def intersectPoint(self, head1, head2):
+
+#         len1=self.getlenght(head1)
+#         len2=self.getlenght(head2)
+#         d=abs(len1-len2)
+        
+#         if len1>len2:
+#             for i in range(d):
+#                 head1=head1.next
+#         else:
+#             for i in range(d):
+#                 head2=head2.next
+                
+#         cur1=head1
+#         cur2=head2
+#         while cur1 is not None and cur2 is not None:
+#             if cur1==cur2:
+#                 return cur1
+#             cur1=cur1.next
+#             cur2=cur2.next
+#         return -1
+        
+# =============================================================================================================
+
+"""Merge two sorted linked lists
+Given the head of two sorted linked lists consisting of nodes respectively. 
+Merge both lists and return the head of the sorted merged list.
+
+Input:
+head1=2->5->15
+head2=3->10->20->40
+  
+Output: 2 -> 3 -> 5 -> 10 -> 15 -> 20 -> 40"""  
+
+# class Solution:
+#     def sortedMerge(self, head1, head2):
+#         dummy=Node(0)
+#         tail=dummy
+        
+#         cur1,cur2=head1,head2
+        
+#         while cur1 and cur2:
+#             if cur1.data<cur2.data:
+#                 tail.next=cur1
+#                 cur1=cur1.next
+#             else:
+#                 tail.next=cur2
+#                 cur2=cur2.next
+#             tail=tail.next
+        
+#         if cur1:
+#             tail.next=cur1
+            
+#         else:
+#             tail.next=cur2
+            
+#         return dummy.next
+            
+
+
+# ============================================================================================================
+
+#                                       ---->> STACK-DATA STRUCTURE <<----
+
+# class Stack:
+#     def __init__(self,capacity):
+#         self.capacity=capacity
+#         self.stack=[]
+    
+#     def push(self,data):
+#         if len(self.stack)==self.capacity:
+#             print("stack is full")
+#             return
+#         else:
+#             self.stack.append(data)
+#             return self.stack
+        
+#     def pops(self):
+#         if len(self.stack)==0:
+#             print("stack is empty")
+#             return None
+#         else:
+#             return self.stack.pop()
+        
+#     def display(self):
+#         print(self.stack)
+            
+    
+# s=Stack(5)
+# s.push(1)
+# s.push(2)
+# s.push(3)
+# s.push(4)
+# s.push(5)
+# s.display()
+# s.pops()
+# s.display()
+
+
+# ============================================================================================================
+
+#                                       ---->> QUEUE-DATA STRUCTURE <<----
+
+# class Queue:
+    
+#     def __init__(self):
+#         self.queue=[]
+    
+#     def enqueue(self,data):
+#         self.queue.append(data)
+
+#     def dequeue(self):
+#         if len(self.queue)==0:
+#             return "queue is empty"
+#         else:
+#             self.queue.pop(0)
+
+#     def display(self):
+#         print(self.queue)
+
+# q=Queue()
+# q.enqueue(1)
+# q.enqueue(2)
+# q.enqueue(3)
+# q.enqueue(4)
+# q.display()
+# q.dequeue()
+# q.display()
+# q.dequeue()
+# q.display()
+
+
+
+#                           --->> efficient way to use QUEUE <<---
+
+# from collections import deque
+
+# q = deque()
+
+# q.append(10)     # enqueue
+# q.append(20)
+# q.append(30)
+
+# print(q)
+# print(q.popleft()) # 10
+# print(q[0])        # peek -> 20
+
+
+"""1️⃣ Stack (LIFO)
+
+Definition: Last In, First Out (like a stack of plates).
+
+Operations:
+
+push(x) → add on top
+
+pop() → remove from top
+
+peek() → see top element
+
+is_empty() → check if stack is empty
+
+Python: Use list or collections.deque.
+
+Applications:
+
+Undo/Redo in editors
+
+Function call stack (recursion)
+
+Expression evaluation (postfix/prefix)
+
+Balancing brackets
+
+2️⃣ Queue (FIFO)
+
+Definition: First In, First Out (like a line at a ticket counter).
+
+Operations:
+
+enqueue(x) → add at rear
+
+dequeue() → remove from front
+
+peek() → see front
+
+is_empty() → check empty
+
+Python: Use collections.deque (efficient).
+
+Applications:
+
+CPU task scheduling
+
+Print job management
+
+BFS (Breadth-First Search) in graphs
+
+3️⃣ Circular Queue
+
+Definition: Queue wraps around to reuse empty space in an array.
+
+Key Idea: Use modulo: (rear + 1) % capacity.
+
+Applications:
+
+Real-time systems
+
+Fixed-size buffers
+
+Resource management in operating systems
+
+4️⃣ Deque (Double-Ended Queue)
+
+Definition: Queue where insertion/deletion is allowed at both ends.
+
+Python: collections.deque
+
+Operations:
+
+append(x) → add rear
+
+appendleft(x) → add front
+
+pop() → remove rear
+
+popleft() → remove front
+
+Applications:
+
+Sliding window maximum/minimum problems
+
+Palindrome check
+
+Job scheduling where priority changes
+
+5️⃣ Stack Using Queue
+                                            -->1.push into q2, -->2.push all from q1 to q2, -->3.swap q1 with q2.
+Idea: Use queue(s) to mimic LIFO.
+
+Application: Mostly interview questions, shows understanding of data structures.
+
+6️⃣ Queue Using Stack
+
+Idea: Use stack(s) to mimic FIFO.
+
+Application: Also interview questions, teaches problem-solving with constraints.
+
+Key Takeaways
+
+Stack → Top matters (LIFO)
+
+Queue → Front matters (FIFO)
+
+Circular Queue → Reuse space efficiently
+
+Deque → Flexibility at both ends
+
+“Using queue/stack to implement each other” → thinking exercise, not practical in real-world applications"""
+
+
+# ============================================================================================================
+"""Parenthesis Checker
+Difficulty: EasyAccuracy: 28.56%Submissions: 695K+Points: 2
+Given a string s, composed of different combinations of '(' , ')', '{', '}', '[', ']'. Determine whether the Expression is balanced or not.
+An expression is balanced if:
+
+Each opening bracket has a corresponding closing bracket of the same type.
+Opening brackets must be closed in the correct order.
+Examples :
+
+Input: s = "[{()}]"
+Output: true
+Explanation: All the brackets are well-formed.
+Input: s = "[()()]{}"
+Output: true
+Explanation: All the brackets are well-formed.
+Input: s = "([]"
+Output: false
+Explanation: The expression is not balanced as there is a missing ')' at the end."""
+
+# class Solution:
+#     def isBalanced(self, s):
+#         stack=[]
+#         for char in s:
+#             if char in "({[":
+#                 stack.append(char)
+#             else:
+#                 if not stack:
+#                     return False
+#                 top=stack.pop()
+#                 if char==")" and top!="(":
+#                     return False
+#                 elif char=="}" and top!="{":
+#                     return False
+#                 elif char=="]" and top!="[":
+#                     return False
+                    
+#         return len(stack)==0
+
+# ============================================================================================================
+
+"""Next Greater Element
+Difficulty: MediumAccuracy: 32.95%Submissions: 481K+Points: 4Average Time: 20m
+You are given an array arr[] of integers, 
+the task is to find the next greater element for each element 
+of the array in order of their appearance in the array. 
+Next greater element of an element in the array is the nearest element on the right
+ which is greater than the current element.
+If there does not exist next greater of current element, then next greater element for current element is -1.
+
+Examples
+
+Input: arr[] = [1, 3, 2, 4]
+Output: [3, 4, 4, -1]
+Explanation: The next larger element to 1 is 3, 3 is 4, 2 is 4 and for 4, since it doesn't exist, it is -1.
+Input: arr[] = [6, 8, 0, 1, 3]
+Output: [8, -1, 1, 3, -1]
+Explanation: The next larger element to 6 is 8, for 8 there is no larger elements hence it is -1, 
+for 0 it is 1, for 1 it is 3 and then for 3 there is no larger element on right and hence -1.
+Input: arr[] = [1, 2, 3, 5]
+Output: [2, 3, 5, -1]
+Explanation: For a sorted array, the next element is next greater element also except for the last element.
+Input: arr[] = [5, 4, 3, 1]
+Output: [-1, -1, -1, -1]
+Explanation: There is no next greater element for any of the elements in the array, so all are -1"""
+
+
+# class Solution:
+#     def nextLargerElement(self, arr):
+#         res=[]
+#         for i in range(len(arr)):
+#             for j in range(i+1,len(arr)):         #----->>  BRUTE FORCE
+#                 if arr[i]<arr[j]:
+#                     res.append(arr[j])
+#                     break
+#             else:
+#                 res.append(-1)
+        
+#         return res
+
+
+#                              ---> OPTIMIZED PROGRAM <---
+
+        
+# class Solution:
+    # def nextLargerElement(self, arr):
+    #     n = len(arr)
+    #     res = [-1] * n   # initialize result with -1
+    #     stack = []       # stack to store potential NGE (Next Greater Element)
+        
+    #     # Traverse from right to left
+    #     for i in range(n-1, -1, -1):
+    #         # Pop elements smaller or equal to arr[i]
+    #         while stack and stack[-1] <= arr[i]:
+    #             stack.pop()
+            
+    #         # If stack not empty, top element is the next greater
+    #         if stack:
+    #             res[i] = stack[-1]
+            
+    #         # Push current element
+    #         stack.append(arr[i])
+        
+    #     return res
+
+
+# ============================================================================================================
+
+"""Sort a stack
+Difficulty: MediumAccuracy: 69.19%Submissions: 160K+Points: 4Average Time: 20m
+Given a stack of integers st[].
+ Sort the stack in ascending order (smallest element at the bottom and largest at the top).
+
+Examples:
+
+Input: st[] = [1, 2, 3]
+Output: [3, 2, 1]
+Explanation: The stack is already sorted in ascending order."""
+
+
+# def sam(arr):
+#     temp=[]
+#     while arr:
+#         val=arr.pop()
+#         while temp and temp[-1]<val:
+#             arr.append(temp.pop())
+#         temp.append(val)
+#     return temp
+# print(sam(arr=[3,2,1]))
+
+# ============================================================================================================
+
+"""Reverse first K of a Queue
+Difficulty: EasyAccuracy: 81.28%Submissions: 162K+Points: 2
+Given an integer k and a queue of integers, we need to reverse the order of the first k elements of the queue, leaving the other elements in the same relative order.
+
+Only following standard operations are allowed on queue.
+
+enqueue(x) : Add an item x to rear of queue
+dequeue() : Remove an item from front of queue
+size() : Returns number of elements in queue.
+front() : Finds front item.
+Note: The above operations represent the general processings. In-built functions of the respective languages can be used to solve the problem.
+
+"If the size of queue is smaller than the given k , then return the original queue."
+
+Examples:
+
+Input: q = [1, 2, 3, 4, 5], k = 3
+Output: [3, 2, 1, 4, 5]
+Explanation: After reversing the first 3 elements from the given queue the resultant queue will be 3 2 1 4 5
+Input: q = [4, 3, 2, 1], k = 4
+Output: [1, 2, 3, 4] 
+Explanation: After reversing the first 4 elements from the given queue the resultant queue will be 1 2 3 4 """
+
+
+# from collections import deque
+# def sam(q,k):
+#     if len(q)<k:
+#         return q
+#     i=1
+#     s=[]
+#     while i<=k:
+#         l=q.popleft()
+#         s.append(l)
+#         i+=1
+#     while s:
+#         res1=s.pop()
+#         q.append(res1)
+#     for i in range(len(q)-k):
+#         res2=q.popleft()
+#         q.append(res2)
+
+#     return q
+
+# q = deque([1,2,3,4,5])
+# print(sam(q, 6))
+
+# ============================================================================================================
